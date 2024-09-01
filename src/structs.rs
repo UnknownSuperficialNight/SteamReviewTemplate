@@ -42,7 +42,7 @@ impl Default for TempData {
                 ],
             ),
             // Difficulty category and its options
-            ("Difficulty", vec!["Just press 'W'", "Easy", "Easy to learn / Hard to master", "Significant brain usage", "Difficult", "Dark Souls"]),
+            ("Difficulty", vec!["Just press 'W'", "Easy", "Easy to learn / Hard to master", "Significant brain usage", "Difficult", "Dark Souls", "Starcraft Champion", "Your dad is Korean"]),
             // Grind category and its options
             (
                 "Grind",
