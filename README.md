@@ -22,3 +22,19 @@ This Rust program generates customized game reviews based on user-selected optio
 - Helps highlight key aspects of the game
 
 This tool is perfect for gamers who want to quickly share their opinions while covering all important aspects of a game.
+
+## Compile
+
+To compile the Rust program, you need to have Rust installed on your system. You can download Rust from the official website: https://www.rust-lang.org/tools/install
+
+Once Rust is installed, you can compile the program by running the following command in the terminal:
+
+```
+cargo build --release
+```
+
+This will create a binary file named `target/release/SteamReviewTemplate` in the project directory.
+
+## Precompiled Binaries
+
+On the [Releases](https://github.com/UnknownSuperficialNight/SteamReviewTemplate/releases) page, you can find precompiled binaries for Windows, and Linux. These binaries are compiled using the latest stable version of Rust.
