@@ -29,6 +29,9 @@ pub fn concate_arrays_to_page(combined_associated_strings: &Vec<&str>, combined_
         output.push('\n');
     }
 
+    output.push_str("---{ Generated with }}---\n");
+    output.push_str("https://github.com/UnknownSuperficialNight/SteamReviewTemplate");
+
     // Return the formatted output string
     output
 }
