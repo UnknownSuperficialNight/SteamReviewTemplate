@@ -109,10 +109,12 @@ pub struct StringContainer {
 impl StringContainer {
     // Create a new StringContainer with 13 empty strings
     pub fn new() -> Self {
-        // Create a new vector with a capacity of 13
-        let mut strings = Vec::with_capacity(13);
-        // Add 13 empty strings to the vector
-        for _ in 0..13 {
+        // Get the length of menu_array_parent
+        let capacity = TempData::default().menu_array_parent.len();
+        // Create a new vector with the capacity based on menu_array_parent length
+        let mut strings = Vec::with_capacity(capacity);
+        // Add empty strings to the vector
+        for _ in 0..capacity {
             strings.push(String::new());
         }
         // Return a new StringContainer with the initialized vector

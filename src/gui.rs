@@ -1,3 +1,4 @@
+use crate::egui::RichText;
 use crate::functions::concate_arrays_to_page;
 use crate::MyEguiApp;
 use eframe::egui;
@@ -29,33 +30,35 @@ impl eframe::App for MyEguiApp {
                     let open = ui.data_mut(|data| data.get_temp(open_id)).unwrap_or(false);
 
                     // Create a collapsing header for each category
-                    let toggle: bool = egui::CollapsingHeader::new(button_label.to_string())
-                        .id_source(id_source)
-                        .open(Some(open))
-                        .show(ui, |ui| {
-                            // Find the corresponding data for the current category
-                            if let Some((associated_string, inner_vec_data)) = self.temp_data.menu_array.iter().find(|(category, _)| *category == button_label) {
-                                let accepted_items = &inner_vec_data;
-                                // Create buttons for each item in the category
-                                for inner_vec in inner_vec_data.iter() {
-                                    if ui.button(inner_vec.to_string()).clicked() {
-                                        // Set the refresh flag when a button is clicked
-                                        self.refresh_output_bool = true;
-                                        if self.temp_data.menu_array_pos == current_row && associated_string == button_label && accepted_items.contains(inner_vec) {
-                                            // Update selected data and move to next category
-                                            self.selected_data_vec.set_string(self.temp_data.menu_array_pos as usize, inner_vec.to_string());
-                                            self.temp_data.menu_array_pos = self.temp_data.menu_array_pos + 1;
-                                            self.update_toggle_bool = true;
-                                        } else {
-                                            // Update selected data for the current category
-                                            self.selected_data_vec.set_string(row, inner_vec.to_string());
-                                        }
-                                    };
-                                }
+                    let toggle: bool = egui::CollapsingHeader::new(
+                        RichText::new(button_label.to_string()).color(if &current_row == &self.temp_data.menu_array_pos { egui::Color32::RED } else { egui::Color32::WHITE }).strong(),
+                    )
+                    .id_source(id_source)
+                    .open(Some(open))
+                    .show(ui, |ui| {
+                        // Find the corresponding data for the current category
+                        if let Some((associated_string, inner_vec_data)) = self.temp_data.menu_array.iter().find(|(category, _)| *category == button_label) {
+                            let accepted_items = &inner_vec_data;
+                            // Create buttons for each item in the category
+                            for inner_vec in inner_vec_data.iter() {
+                                if ui.button(inner_vec.to_string()).clicked() {
+                                    // Set the refresh flag when a button is clicked
+                                    self.refresh_output_bool = true;
+                                    if self.temp_data.menu_array_pos == current_row && associated_string == button_label && accepted_items.contains(inner_vec) {
+                                        // Update selected data and move to next category
+                                        self.selected_data_vec.set_string(self.temp_data.menu_array_pos as usize, inner_vec.to_string());
+                                        self.temp_data.menu_array_pos = self.temp_data.menu_array_pos + 1;
+                                        self.update_toggle_bool = true;
+                                    } else {
+                                        // Update selected data for the current category
+                                        self.selected_data_vec.set_string(row, inner_vec.to_string());
+                                    }
+                                };
                             }
-                        })
-                        .header_response
-                        .clicked();
+                        }
+                    })
+                    .header_response
+                    .clicked();
 
                     // Handle UI updates based on selection
                     if &current_row == &self.temp_data.menu_array_pos && self.update_toggle_bool {
@@ -112,7 +115,7 @@ impl eframe::App for MyEguiApp {
                     // Center and justify the output text
                     ui.centered_and_justified(|ui| {
                         // Display the final output as a monospaced label
-                        ui.label(egui::RichText::new(&self.temp_data.final_output).monospace()).on_hover_text_at_pointer("Use Ctrl+A to select all then Ctrl+C to copy");
+                        ui.label(egui::RichText::new(&self.temp_data.final_output).monospace().color(egui::Color32::WHITE)).on_hover_text_at_pointer("Use Ctrl+A to select all then Ctrl+C to copy");
                     });
                 });
             })
