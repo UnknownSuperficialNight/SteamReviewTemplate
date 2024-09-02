@@ -19,7 +19,7 @@ impl Default for TempData {
     fn default() -> Self {
         // Define the menu array with categories and their options
         let menu_array: Vec<(&'static str, Vec<&'static str>)> = vec![
-            ("Graphics", vec!["You forget what reality is", "Beautiful", "Good", "Decent", "Bad", r"Don't look too long at it", "MS-DOS "]),
+            ("Graphics", vec!["You forget what reality is", "Beautiful", "Good", "Decent", "Bad", r"Don't look too long at it", "MS-DOS"]),
             // Gameplay category and its options
             ("Gameplay", vec!["Very good", "Good", "It's just gameplay", "Mehh", "Watch paint dry instead", "Just don't"]),
             // Audio category and its options
@@ -58,7 +58,7 @@ impl Default for TempData {
             ("Bugs", vec!["Never heard of", "Minor bugs", "Can get annoying", "ARK: Survival Evolved", "The game itself is a big terrarium for bugs"]),
             // Game popularity category and its options
             (
-                "Game popularity",
+                "Popularity",
                 vec![
                     "Single-player gem",
                     "Cult classic with dedicated fanbase",
