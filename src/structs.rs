@@ -25,7 +25,7 @@ impl Default for TempData {
             // Audio category and its options
             ("Audio", vec!["Eargasm", "Very good", "Good", "Not too bad", "Bad", "I'm now deaf"]),
             // Audience category and its options
-            ("Audience", vec!["Kids", "Teens", "Adults", "Grandma"]),
+            ("Audience", vec!["Fetus", "Kids", "Teens", "Adults", "Grandma"]),
             // PC Requirements category and its options
             ("PC Requirements", vec!["Check if you can run paint", "Potato", "Decent", "Fast", "Rich boi", "Ask NASA if they have a spare computer"]),
             // Game Size category and its options
@@ -56,6 +56,24 @@ impl Default for TempData {
             ("Price", vec!["It's free!", "Worth the price", "If it's on sale", "If u have some spare money left", "Not recommended", "You could also just burn your money"]),
             // Bugs category and its options
             ("Bugs", vec!["Never heard of", "Minor bugs", "Can get annoying", "ARK: Survival Evolved", "The game itself is a big terrarium for bugs"]),
+            // Game popularity category and its options
+            (
+                "Game popularity",
+                vec![
+                    "Single-player gem",
+                    "Cult classic with dedicated fanbase",
+                    "Consistent player base for multiplayer",
+                    "Popular among casual gamers",
+                    "Trending in the indie scene",
+                    "Mainstream hit across platforms",
+                    "Esports phenomenon",
+                    "Global multiplayer sensation",
+                    "Viral sensation but short-lived",
+                    "Niche audience but deeply loved",
+                    "Not widely known",
+                    "Dead",
+                ],
+            ),
             // Rating category and its options
             ("? / 10", vec!["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]),
         ];
