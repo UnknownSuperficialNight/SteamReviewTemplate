@@ -1,10 +1,32 @@
 use crate::egui::RichText;
 use crate::functions::concate_arrays_to_page;
 use crate::MyEguiApp;
+use crate::StringContainer;
 use eframe::egui;
 
 impl eframe::App for MyEguiApp {
     fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
+        // Add a reset button at the top of the page
+        egui::TopBottomPanel::top("top_panel").resizable(false).show_animated(ctx, true, |ui| {
+            // Create a button labeled "Reset" with hover text
+            if ui.button("Reset").on_hover_text("Resets all selections and returns to the first category").clicked() {
+                self.selected_data_vec = StringContainer::new();
+                self.temp_data.menu_array_pos = 0;
+                self.refresh_output_bool = true;
+                self.update_toggle_bool = false;
+
+                // Close all categories
+                for button_label in self.temp_data.menu_array_parent.iter() {
+                    // Create a unique ID for each category
+                    let open_id = egui::Id::new(button_label);
+                    // Set the open state of each category to false (closed)
+                    ui.data_mut(|data| data.insert_temp(open_id, false));
+                }
+                // Open the first category (set its open state to true)
+                ui.data_mut(|data| data.insert_temp(egui::Id::new(&self.temp_data.menu_array_parent[0]), true));
+            }
+        });
+
         // Create a central panel to contain the main UI elements
         egui::CentralPanel::default().show(ctx, |ui| {
             // Set the text style for the UI
@@ -108,6 +130,7 @@ impl eframe::App for MyEguiApp {
                     self.refresh_output_bool = false;
                 }
             });
+
             // Create a side panel to display the final output
             egui::SidePanel::right("side_panel").exact_width(ctx.available_rect().width() / 2.0).resizable(false).show_animated(ctx, true, |ui| {
                 // Create a vertical scroll area for the output
